@@ -1,0 +1,556 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #f0f0f0;
+    min-height: 100vh;
+}
+
+header {
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255,165,0,0.3);
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #ffa500;
+    text-shadow: 0 0 20px rgba(255,165,0,0.3);
+}
+
+.subtitle {
+    color: #aaa;
+    margin-top: 5px;
+    font-weight: 300;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+.nav-btn {
+    background: rgba(255,165,0,0.1);
+    border: 2px solid rgba(255,165,0,0.3);
+    color: #ffa500;
+    padding: 10px 25px;
+    margin: 0 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background: #ffa500;
+    color: #1a1a2e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,165,0,0.4);
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 60%;
+    max-width: 500px;
+    padding: 12px 20px;
+    border: 2px solid rgba(255,165,0,0.3);
+    border-radius: 25px;
+    background: rgba(255,255,255,0.05);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.search-bar input:focus {
+    border-color: #ffa500;
+    background: rgba(255,255,255,0.1);
+}
+
+.filter-bar {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #ccc;
+    padding: 6px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85em;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #ffa500;
+    color: #1a1a2e;
+    border-color: #ffa500;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #ffa500;
+    box-shadow: 0 10px 30px rgba(255,165,0,0.2);
+    background: rgba(255,165,0,0.05);
+}
+
+.card h3 {
+    color: #ffa500;
+    margin-bottom: 8px;
+    font-size: 1.15em;
+}
+
+.card .cuisine-tag {
+    display: inline-block;
+    background: rgba(255,165,0,0.15);
+    color: #ffa500;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    margin-bottom: 8px;
+}
+
+.card .difficulty-tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+
+.difficulty-Easy { background: rgba(0,200,100,0.2); color: #00c864; }
+.difficulty-Medium { background: rgba(255,165,0,0.2); color: #ffa500; }
+.difficulty-Hard { background: rgba(255,50,50,0.2); color: #ff3232; }
+
+.card p {
+    color: #aaa;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.card .meta {
+    margin-top: 10px;
+    font-size: 0.8em;
+    color: #888;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    color: #ffa500;
+    font-size: 1em;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+    transition: color 0.3s;
+}
+
+.back-btn:hover {
+    color: #ffcc00;
+}
+
+/* Recipe Detail */
+.recipe-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.recipe-header h2 {
+    font-size: 2em;
+    color: #ffa500;
+}
+
+.recipe-header .tags {
+    margin: 10px 0;
+}
+
+.recipe-header .tags span {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.85em;
+}
+
+.chef-tip {
+    background: rgba(255,165,0,0.1);
+    border-left: 4px solid #ffa500;
+    padding: 15px 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    font-style: italic;
+    color: #ddd;
+}
+
+.chef-tip::before {
+    content: "Chef's Tip: ";
+    font-weight: 600;
+    color: #ffa500;
+    font-style: normal;
+}
+
+.ingredients-section, .steps-section {
+    margin: 20px 0;
+}
+
+.ingredients-section h3, .steps-section h3 {
+    color: #ffa500;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,165,0,0.2);
+    padding-bottom: 8px;
+}
+
+.ingredients-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.ingredient-item {
+    background: rgba(255,255,255,0.05);
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.ingredient-item .ing-name {
+    color: #f0f0f0;
+}
+
+.ingredient-item .ing-qty {
+    color: #ffa500;
+    font-weight: 600;
+}
+
+.step-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 15px;
+    transition: all 0.3s;
+}
+
+.step-card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,165,0,0.2);
+}
+
+.step-number {
+    background: #ffa500;
+    color: #1a1a2e;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    color: #ffa500;
+    margin-bottom: 5px;
+}
+
+.step-content p {
+    color: #ccc;
+    line-height: 1.6;
+}
+
+.step-content .step-ingredient-tag {
+    display: inline-block;
+    margin-top: 8px;
+    background: rgba(255,165,0,0.1);
+    color: #ffa500;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
+}
+
+.recipe-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.action-btn {
+    background: linear-gradient(135deg, #ffa500, #ff6500);
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255,165,0,0.4);
+}
+
+/* Quiz */
+.quiz-intro {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+#quiz-select h2 {
+    text-align: center;
+    color: #ffa500;
+    margin-bottom: 10px;
+}
+
+#quiz h2 {
+    color: #ffa500;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.quiz-progress {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.progress-bar {
+    width: 80%;
+    max-width: 500px;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffa500, #ff6500);
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+
+.question-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 700px;
+}
+
+.question-card h3 {
+    color: #f0f0f0;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.question-type {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    margin-bottom: 15px;
+}
+
+.type-ingredient { background: rgba(100,200,255,0.2); color: #64c8ff; }
+.type-quantity { background: rgba(200,100,255,0.2); color: #c864ff; }
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.option-btn {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.1);
+    color: #f0f0f0;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95em;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.option-btn:hover {
+    border-color: #ffa500;
+    background: rgba(255,165,0,0.1);
+}
+
+.option-btn.selected {
+    border-color: #ffa500;
+    background: rgba(255,165,0,0.2);
+    color: #ffa500;
+    font-weight: 600;
+}
+
+.quiz-nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.quiz-nav button {
+    background: linear-gradient(135deg, #ffa500, #ff6500);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.3s;
+}
+
+.quiz-nav button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,165,0,0.4);
+}
+
+.quiz-nav button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Score */
+.score-container {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.stars-display {
+    font-size: 3em;
+    margin: 20px 0;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.score-title {
+    font-size: 2em;
+    color: #ffa500;
+    margin-bottom: 10px;
+}
+
+.score-detail {
+    font-size: 1.2em;
+    color: #ccc;
+    margin: 8px 0;
+}
+
+.score-percentage {
+    font-size: 3em;
+    font-weight: 700;
+    color: #ffa500;
+    margin: 15px 0;
+}
+
+.score-feedback {
+    color: #aaa;
+    font-style: italic;
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+.score-actions {
+    margin-top: 25px;
+}
+
+.score-actions button {
+    background: linear-gradient(135deg, #ffa500, #ff6500);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+    margin: 5px;
+    transition: all 0.3s;
+}
+
+.score-actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,165,0,0.4);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.85em;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 50px;
+}
